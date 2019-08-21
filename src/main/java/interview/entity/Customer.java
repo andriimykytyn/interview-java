@@ -1,30 +1,32 @@
 package interview.entity;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
 import java.util.Objects;
 
-public class Customer {
+public class Customer implements UserDetails {
 
     private Long id;
     private String email;
     private String password;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
     private boolean certified;
-    private Long tourId;
 
     public Customer() {
     }
 
     public Customer(Long id, String email,
-                    String password, String first_name,
-                    String last_name, boolean certified, Long tourId) {
+                    String password, String firstName,
+                    String lastName, boolean certified) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.certified = certified;
-        this.tourId = tourId;
     }
 
     public Long getId() {
@@ -43,6 +45,7 @@ public class Customer {
         this.email = email;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
@@ -51,20 +54,20 @@ public class Customer {
         this.password = password;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public boolean isCertified() {
@@ -75,12 +78,34 @@ public class Customer {
         this.certified = certified;
     }
 
-    public Long getTourId() {
-        return tourId;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
-    public void setTourId(Long tourId) {
-        this.tourId = tourId;
+    @Override
+    public String getUsername() {
+        return getEmail();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     @Override
@@ -92,14 +117,13 @@ public class Customer {
                 Objects.equals(id, customer.id) &&
                 Objects.equals(email, customer.email) &&
                 Objects.equals(password, customer.password) &&
-                Objects.equals(first_name, customer.first_name) &&
-                Objects.equals(last_name, customer.last_name) &&
-                Objects.equals(tourId, customer.tourId);
+                Objects.equals(firstName, customer.firstName) &&
+                Objects.equals(lastName, customer.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password, first_name, last_name, certified, tourId);
+        return Objects.hash(id, email, password, firstName, lastName, certified);
     }
 
     @Override
@@ -108,10 +132,9 @@ public class Customer {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", certified=" + certified +
-                ", tourId=" + tourId +
                 '}';
     }
 }
