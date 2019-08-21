@@ -9,7 +9,7 @@ public class Customer {
     private String password;
     private String first_name;
     private String last_name;
-    private boolean certificate;
+    private boolean certified;
     private Long tourId;
 
     public Customer() {
@@ -17,13 +17,13 @@ public class Customer {
 
     public Customer(Long id, String email,
                     String password, String first_name,
-                    String last_name, boolean certificate, Long tourId) {
+                    String last_name, boolean certified, Long tourId) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.first_name = first_name;
         this.last_name = last_name;
-        this.certificate = certificate;
+        this.certified = certified;
         this.tourId = tourId;
     }
 
@@ -67,12 +67,12 @@ public class Customer {
         this.last_name = last_name;
     }
 
-    public boolean isCertificate() {
-        return certificate;
+    public boolean isCertified() {
+        return certified;
     }
 
-    public void setCertificate(boolean certificate) {
-        this.certificate = certificate;
+    public void setCertified(boolean certified) {
+        this.certified = certified;
     }
 
     public Long getTourId() {
@@ -88,7 +88,7 @@ public class Customer {
         if (this == o) return true;
         if (!(o instanceof Customer)) return false;
         Customer customer = (Customer) o;
-        return certificate == customer.certificate &&
+        return certified == customer.certified &&
                 Objects.equals(id, customer.id) &&
                 Objects.equals(email, customer.email) &&
                 Objects.equals(password, customer.password) &&
@@ -99,7 +99,7 @@ public class Customer {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password, first_name, last_name, certificate, tourId);
+        return Objects.hash(id, email, password, first_name, last_name, certified, tourId);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class Customer {
                 ", password='" + password + '\'' +
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
-                ", certificate=" + certificate +
+                ", certified=" + certified +
                 ", tourId=" + tourId +
                 '}';
     }
