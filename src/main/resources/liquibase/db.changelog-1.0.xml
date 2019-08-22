@@ -32,4 +32,129 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="1.0.1" author="andrii.mykytyn">
+        <createTable tableName="checks">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="total_price" type="DOUBLE">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="created" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="customer_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_check_customers"
+                             references="customers(id)"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.2" author="andrii.mykytyn">
+        <createTable tableName="hotels">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="country" type="VARCHAR(100)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="city" type="VARCHAR(100)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="is_european" type="TINYINT(4)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="visa_fee_required" type="TINYINT(4)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="stars" type="INT">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="insurance_cost_per_day" type="DOUBLE">
+                <constraints nullable="false" />
+            </column>
+
+        </createTable>
+    </changeSet>
+
+
+
+    <changeSet id="1.0.3" author="andrii.mykytyn">
+        <createTable tableName="rooms">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="room_type" type="VARCHAR(25)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="amount_of_beds" type="INT">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="cost_per_day" type="DOUBLE">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="hotel_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_rooms_hotel"
+                             references="hotels(id)"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="1.0.4" author="andrii.mykytyn">
+        <createTable tableName="tours">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="days" type="INT">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="has_transfer" type="TINYINT(4)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="has_breakfast" type="TINYINT(4)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="has_lunch" type="TINYINT(4)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="has_dinner" type="TINYINT(4)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="department_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="hotel_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_tours_hotel"
+                             references="hotels(id)"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>

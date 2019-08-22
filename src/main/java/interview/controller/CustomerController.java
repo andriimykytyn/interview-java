@@ -18,6 +18,8 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+
+
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/current-customer")
     public CustomerDto getCurrent(Authentication authentication) {
