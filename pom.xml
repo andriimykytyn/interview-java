@@ -83,7 +83,18 @@
 			<artifactId>jaxb-api</artifactId>
 			<version>2.3.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.5.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>name.falgout.jeffrey.testing.junit5</groupId>
+			<artifactId>mockito-extension</artifactId>
+			<version>1.1.1</version>
+			<scope>test</scope>
+		</dependency>
 
 
 	</dependencies>
